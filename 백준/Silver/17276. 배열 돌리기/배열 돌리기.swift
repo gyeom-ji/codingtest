@@ -12,26 +12,22 @@ while cnt > 0 {
     }
     
     arr = Array(repeating: Array(repeating: 0, count: n), count: n)
+    
     for i in 0..<n {
         arr[i] = readLine()!.split(separator: " ").map{ Int($0)! }
     }
     
-    if degree == 0 || degree == 360 {
-        for i in 0..<n {
-            for j in 0..<n {
-                print(arr[i][j], terminator: " ")
-            }
-            print()
-        }
-    } else {
-        rotateRight()
-        for i in 0..<n {
-            for j in 0..<n {
-                print(arr[i][j], terminator: " ")
-            }
-            print()
-        }
+    if degree != 0 && degree != 360 {
+         rotateRight()
     }
+    
+    for i in 0..<n {
+        for j in 0..<n {
+            print(arr[i][j], terminator: " ")
+        }
+        print()
+    }
+    
     cnt -= 1
 }
 
