@@ -1,76 +1,65 @@
-var input = readLine()!.split{ $0 == " "}.map{Int($0)!}
-let n = input[0], m = input[1]
-var r = input[2]
+let input = readLine()!.split{ $0 == " " }.map{ Int($0)!}
+let N = input[0], M = input[1], R = input[2]
 var arr = [[Int]]()
 
-
-for _ in 0..<n {
-    arr.append(readLine()!.split{ $0 == " "}.map{Int($0)!})
+for _ in 0..<N {
+    arr.append(readLine()!.split{ $0 == " " }.map{ Int($0)!})
 }
 
-rotateArr()
+rotate()
 
-for i in 0..<n{
-    for j in 0..<m {
+for i in 0..<N {
+    for j in 0..<M {
         print(arr[i][j], terminator: " ")
     }
     print()
 }
 
-func rotateArr() {
+func rotate() {
+    let cnt = min(N,M) / 2
     
-    for k in 0..<min(n, m)/2 {
-        
-        var maxN = n - k - 1, maxM = m - k - 1
-        
+    for index in 0..<cnt {
+        let maxN = N - index - 1, maxM = M - index - 1
         var rotateArr = [Int]()
         
-        for i in k..<maxM {
-            rotateArr.append(arr[k][i])
+        for i in index..<maxM {
+            rotateArr.append(arr[index][i])
         }
         
-        for i in k..<maxN {
+        for i in index..<maxN {
             rotateArr.append(arr[i][maxM])
         }
         
-        
-        for i in (k..<maxM).reversed() {
-            rotateArr.append(arr[maxN][i + 1])
+        for i in (index + 1...maxM).reversed() {
+            rotateArr.append(arr[maxN][i])
         }
         
+        for i in (index + 1...maxN).reversed() {
+            rotateArr.append(arr[i][index])
+        }
+    
+        let rotateCnt = R % rotateArr.count
+        rotateArr = Array(rotateArr[rotateCnt...] + rotateArr[0..<rotateCnt])
+        var k = 0
         
-        for i in (k..<maxN).reversed() {
-            rotateArr.append(arr[i+1][k])
+        for i in index..<maxM {
+            arr[index][i] = rotateArr[k]
+            k += 1
         }
         
-        let rCnt = r%rotateArr.count
-        
-        rotateArr = Array(rotateArr[rCnt...] + rotateArr[0..<rCnt])
-        
-        var index = 0
-        
-        for i in k..<maxM {
-            arr[k][i] = rotateArr[index]
-            index += 1
+        for i in index..<maxN {
+            arr[i][maxM] = rotateArr[k]
+            k += 1
         }
         
-        for i in k..<maxN {
-            arr[i][maxM] = rotateArr[index]
-            index += 1
+        for i in (index + 1...maxM).reversed() {
+            arr[maxN][i] = rotateArr[k]
+            k += 1
         }
         
-        
-        for i in (k..<maxM).reversed() {
-            arr[maxN][i + 1] = rotateArr[index]
-            index += 1
+        for i in (index + 1...maxN).reversed() {
+            arr[i][index] = rotateArr[k]
+            k += 1
         }
-        
-        
-        for i in (k..<maxN).reversed() {
-            arr[i+1][k] = rotateArr[index]
-            index += 1
-        }
-        
     }
 }
-
