@@ -11,7 +11,7 @@ while cnt > 0 {
         degree += 360
     }
     
-    arr = Array(repeating: Array(repeating: 0, count: n + 1), count: n + 1)
+    arr = Array(repeating: Array(repeating: 0, count: n), count: n)
     for i in 0..<n {
         arr[i] = readLine()!.split(separator: " ").map{ Int($0)! }
     }
