@@ -5,11 +5,11 @@ var anw = Array(repeating: Array(repeating: ".", count: N), count: N)
 let dx = [-1,-1,-1,0,0,1,1,1], dy = [-1,0,1,-1,1,-1,0,1]
 var isLandMineOpen = false
 
-for i in 0..<N {
+for _ in 0..<N {
     originMap.append(Array(readLine()!))
 }
 
-for i in 0..<N {
+for _ in 0..<N {
     openMap.append(Array(readLine()!))
 }
 
@@ -24,7 +24,7 @@ func setMap() {
         for j in 0..<N {
             var cnt = 0
             if openMap[i][j] == "x" {
-                if originMap[i][j] == "*" || isLandMineOpen {
+                if originMap[i][j] == "*" {
                     isLandMineOpen = true
                 }
                 for k in 0..<8 {
