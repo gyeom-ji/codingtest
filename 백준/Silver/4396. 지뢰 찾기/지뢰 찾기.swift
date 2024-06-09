@@ -26,15 +26,14 @@ func setMap() {
             if openMap[i][j] == "x" {
                 if originMap[i][j] == "*" {
                     isLandMineOpen = true
-                }
-                for k in 0..<8 {
-                    if isPossible(i + dx[k], j + dy[k]) {
-                        if originMap[i + dx[k]][j + dy[k]] == "*" {
+                } else {
+                    for k in 0..<8 {
+                        if isPossible(i + dx[k], j + dy[k]) {
                             cnt += 1
                         }
                     }
+                    anw[i][j] = String(cnt)
                 }
-                anw[i][j] = String(cnt)
             }
         }
     }
@@ -60,5 +59,5 @@ func printMap() {
 }
 
 func isPossible(_ r: Int, _ c: Int) -> Bool {
-    return r >= 0 && r < N && c >= 0 && c < N
+    return r >= 0 && r < N && c >= 0 && c < N && originMap[r][c] == "*"
 }
