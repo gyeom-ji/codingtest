@@ -3,7 +3,7 @@ var arr = Array(readLine()!)
 var anw = 0
 let target : [Character] = ["q", "u", "a", "c", "k"]
 
-if arr.count % 5 != 0 || arr[0] != "q" || arr.last! != "k" {
+if arr.count % 5 != 0 {
     print(-1)
     exit(0)
 }
@@ -20,7 +20,7 @@ func findDuck(_ start: Int) {
     
     for i in start..<arr.count {
         if target[index] == arr[i] {
-            if arr[i] == "k" {
+            if index == 4 {
                 if isNew {
                     anw += 1
                     isNew = false
@@ -45,4 +45,3 @@ if anw == 0 {
 } else {
     print(anw)
 }
-
