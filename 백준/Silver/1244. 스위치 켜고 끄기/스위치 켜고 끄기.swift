@@ -2,22 +2,18 @@ let N = Int(readLine()!)!
 var switchArr = [0]
 switchArr += (readLine()!.split{ $0 == " " }.map { Int($0)! })
 let studentCnt = Int(readLine()!)!
-var studentArr = [(Int,Int)]()
+var cnt = 1
 
 for _ in 0..<studentCnt {
-    let input = readLine()!.split{ $0 == " " }.map { Int($0)! }
-    studentArr.append((input[0], input[1]))
-}
+    let student = readLine()!.split{ $0 == " " }.map { Int($0)! }
 
-for i in 0..<studentCnt {
-    if studentArr[i].0 == 1 {  // 남학생
-        changeSwitchMale(studentArr[i].1)
+    if student[0] == 1 {  // 남학생
+        changeSwitchMale(student[1])
     } else { // 여학생
-        changeSwitchFemale(studentArr[i].1)
+        changeSwitchFemale(student[1])
     }
 }
 
-var cnt = 1
 for i in 1...N {
     if cnt > 20 {
         print()
