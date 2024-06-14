@@ -1,23 +1,34 @@
-let input = Array(readLine()!)
+let input = readLine()!.map{String($0)}
+let count = input.count
 var visited = Array(repeating: false, count: input.count)
-var anw = Array(repeating: "", count: input.count)
+var anw = ""
 
-for _ in 0..<input.count {
-    var minValue : (Int, String) = (0, anw.joined())
-    var check = false
-    for j in 0..<input.count where !visited[j] {
-        var temp = anw
-        temp[j] = "\(input[j])"
-        let value = temp.joined()
-        
-        if !check {
-            minValue = (j, value)
-            check = true
-        } else if minValue.1 > value {
-            minValue = (j, value)
+func getMinChar(_ left: Int, _ right: Int) {
+    var anw = ""
+    
+    if left > right {
+        return
+    }
+    
+    var minIndex = left
+    
+    for i in left...right {
+        if input[minIndex] > input[i] {
+            minIndex = i
         }
     }
-    anw[minValue.0] = "\(input[minValue.0])"
-    visited[minValue.0] = true
-    print("\(minValue.1)")
+    
+    visited[minIndex] = true
+
+    for i in 0..<count {
+        if visited[i] {
+            anw += input[i]
+        }
+    }
+    
+    print(anw)
+    getMinChar(minIndex + 1, right)
+    getMinChar(left, minIndex - 1)
 }
+
+getMinChar(0, count - 1)
