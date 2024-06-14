@@ -8,21 +8,17 @@ for _ in 0..<N {
     }
 }
 
-var start = 0, end = 0, height = 0, index = 0
+var width = 0, height = 0
 var anw = 0
 
-while index <= 365 {
-    if arr[index] > 0 {
-        start = index
-        while arr[index] != 0 {
-            height = max(height, arr[index])
-            index += 1
-        }
-        end = index
-        anw += (end - start) * height
-        height = 0
+for i in 1...366 {
+    if arr[i] > 0 {
+        width += 1
+        height = max(height, arr[i])
     } else {
-        index += 1
+        anw += width * height
+        height = 0
+        width = 0
     }
 }
 
