@@ -1,7 +1,5 @@
 var stack = readLine()!
 let MAX = Int(readLine()!)!
-var cnt = stack.count
-var cursor = cnt
 var reverseStack = ""
 
 for _ in 0..<MAX {
