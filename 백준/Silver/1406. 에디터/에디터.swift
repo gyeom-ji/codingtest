@@ -1,6 +1,6 @@
-var stack = readLine()!
+var left = readLine()!
 let MAX = Int(readLine()!)!
-var reverseStack = ""
+var right = ""
 
 for _ in 0..<MAX {
     let command = readLine()!
@@ -8,24 +8,24 @@ for _ in 0..<MAX {
 }
 
 func executeCommand(_ command : String){
-    switch(command.first!) {
-        case "L" :
-        if let last = stack.popLast() {
-            reverseStack.append(last)
+    switch(command) {
+    case "L" :
+        if let last = left.popLast() {
+            right.append(last)
         }
-
-        case "D" :
-        if let last = reverseStack.popLast() {
-            stack.append(last)
+        
+    case "D" :
+        if let last = right.popLast() {
+            left.append(last)
         }
-        case "B" :
-        stack.popLast()
-        case "P" :
-        stack.append(command.last!)
-        default :
-        break
+        
+    case "B" :
+        left.popLast()
+        
+    default :
+        left.append(command.last!)
     }
 }
 
-print(stack + reverseStack.reversed())
+print(left + right.reversed())
 
