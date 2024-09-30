@@ -9,7 +9,7 @@ while left < input[0] {
             sum += arr[right]
             right += 1
         } else {
-            left += 1
+            break
         }
     } else {
         cnt = min(cnt, right - left)
