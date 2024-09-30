@@ -10,18 +10,14 @@ class Solution {
             if sum == goal {
                 anw += 1
             } 
+
             right += 1
+            
             if sum > goal || right == cnt {
                 sum = 0
                 left += 1
                 right = left 
             }
-
-            // if right == cnt {
-            //     sum = 0
-            //     left += 1
-            //     right = left
-            // }
         }
         return anw
     }
