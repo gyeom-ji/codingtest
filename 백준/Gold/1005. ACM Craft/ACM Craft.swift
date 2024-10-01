@@ -73,16 +73,16 @@ for _ in 0..<T {
     
     let W = file.readInt()
    
-    str += "\(buildBuilding(W, timeArr[W], sequence, timeArr))\n"
+    str += "\(buildBuilding(W, sequence, timeArr))\n"
 }
 
 print(str)
 
-func buildBuilding(_ cur: Int,_ time: Int, _ sequence: [[Int]], _ timeArr: [Int]) -> Int {
+func buildBuilding(_ cur: Int,_ sequence: [[Int]], _ timeArr: [Int]) -> Int {
     var maxTime = 0
     for next in sequence[cur] {
         if dp[next] == Int.max {
-            maxTime = max(buildBuilding(next, time + timeArr[next], sequence, timeArr), maxTime)
+            maxTime = max(buildBuilding(next, sequence, timeArr), maxTime)
         } else {
             maxTime = max(dp[next], maxTime)
         }
