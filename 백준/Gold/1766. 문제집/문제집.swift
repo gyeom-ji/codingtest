@@ -75,6 +75,7 @@ print(order)
 
 func bfs() {
     while !queue.isEmpty {
+        // 가장 쉬운(낮은 숫자)문제 부터
         queue.sort(by: <)
         let now = queue.removeFirst()
 
