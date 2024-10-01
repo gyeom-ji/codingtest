@@ -54,7 +54,9 @@ let T = file.readInt()
 
 var str = ""
 var dp = [Int]()
+var queue = [Int]()
 
+/// dfs + dp
 for _ in 0..<T {
     let N = file.readInt()
     let K = file.readInt()
@@ -73,16 +75,16 @@ for _ in 0..<T {
     
     let W = file.readInt()
    
-    str += "\(buildBuilding(W, sequence, timeArr))\n"
+    str += "\(dfs(W, sequence, timeArr))\n"
 }
 
 print(str)
 
-func buildBuilding(_ cur: Int,_ sequence: [[Int]], _ timeArr: [Int]) -> Int {
+func dfs(_ cur: Int,_ sequence: [[Int]], _ timeArr: [Int]) -> Int {
     var maxTime = 0
     for next in sequence[cur] {
         if dp[next] == Int.max {
-            maxTime = max(buildBuilding(next, sequence, timeArr), maxTime)
+            maxTime = max(dfs(next, sequence, timeArr), maxTime)
         } else {
             maxTime = max(dp[next], maxTime)
         }
@@ -91,3 +93,62 @@ func buildBuilding(_ cur: Int,_ sequence: [[Int]], _ timeArr: [Int]) -> Int {
     dp[cur] = min(dp[cur], maxTime + timeArr[cur])
     return dp[cur]
 }
+
+/// 위상 정렬 Kahn’s Algorithms
+////선행자 개수
+//var inDegree = [0]
+//
+//for _ in 0..<T {
+//    let N = file.readInt()
+//    let K = file.readInt()
+//    var sequence = Array(repeating:Array(repeating: 0, count: 0), count: N + 1)
+//    var timeArr = [0]
+//    
+//    dp = Array(repeating: 0, count: N + 1)
+//    inDegree = Array(repeating: 0, count: N + 1)
+//    
+//    for _ in 0..<N {
+//        timeArr.append(file.readInt())
+//    }
+//    
+//    for _ in 0..<K {
+//        let element = [file.readInt(), file.readInt()]
+//        sequence[element[0]].append(element[1])
+//        // 진입 차수 계산
+//        inDegree[element[1]] += 1
+//    }
+//    
+//    // 진입 차수 0인 빌딩 큐에 삽입
+//    for i in 1...N {
+//        if inDegree[i] == 0 {
+//            queue.append(i)
+//        }
+//    }
+//
+//    let W = file.readInt()
+//    bfs(sequence, timeArr)
+//
+//    // W 건물 짓는 시간 + W를 짓기 위한 건물들의 최소 건설 시간
+//    str += "\(dp[W] + timeArr[W])\n"
+//}
+//
+//print(str)
+//
+//func bfs(_ sequence: [[Int]], _ timeArr: [Int]) {
+//    while !queue.isEmpty {
+//        let now = queue.removeFirst()
+//
+//        for next in sequence[now] {
+//            // 자신을 짓기 위한 건물들의 최소 건설 시간 갱신
+//            dp[next] = max(dp[next], dp[now] + timeArr[now])
+//            
+//            // 다음 빌딩의 선행자 제거
+//            inDegree[next] -= 1
+//
+//            // 진입 차수 0이면 큐에 삽입
+//            if inDegree[next] == 0 {
+//                queue.append(next)
+//            }
+//        }
+//    }
+//}
