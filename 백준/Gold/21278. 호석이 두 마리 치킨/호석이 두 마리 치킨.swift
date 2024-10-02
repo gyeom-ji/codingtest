@@ -81,16 +81,16 @@ func floydWarshall() {
 
 for i in 1..<N {
     for j in i + 1...N {
-        var temp = 0
+        var sum = 0
         for k in 1...N {
-            temp += min(distance[k][i], distance[k][j]) *  2
+            sum += min(distance[i][k], distance[j][k]) * 2
         }
-        
-        if temp <= anw.2 && (i <= anw.0 && j <= anw.1) || temp < anw.2 {
-            anw = (i, j, temp)
+        if sum < anw.2 {
+            anw = (i, j, sum)
+        } else if sum == anw.2 && i <= anw.0 && j <= anw.1 {
+            anw = (i, j, sum)
         }
     }
 }
 
 print(anw.0, anw.1, anw.2)
-
