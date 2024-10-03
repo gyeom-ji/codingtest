@@ -1,6 +1,6 @@
 let input = readLine()!.split{$0 == " "}.map{Int($0)!}
 var anw = ""
-var visited = Array(repeating: false, count: input[0] + 1)
+
 backTracking(1, [])
 print(anw)
 
