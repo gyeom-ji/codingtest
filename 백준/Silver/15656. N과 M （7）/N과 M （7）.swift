@@ -12,8 +12,6 @@ func backTracking(_ cur: Int, _ str: String, _ cnt: Int) {
         return
     }
     
-    if cur > input[0] - 1 {return}
-    
     for i in 0..<input[0] {
         backTracking(i, str + "\(inputArray[i]) ", cnt + 1)
     }
