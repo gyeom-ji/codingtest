@@ -1,0 +1,21 @@
+let input = readLine()!.split{$0 == " "}.map{Int($0)!}
+var inputArray = readLine()!.split{$0 == " "}.map{Int($0)!}.sorted(by: <)
+var anw = ""
+var visited = Array(repeating: false, count: input[0] + 1)
+
+backTracking(0, [])
+
+print(anw)
+
+func backTracking(_ cur: Int, _ arr: [Int]) {
+    if arr.count == input[1] {
+        anw += "\(arr.map{ String($0) }.joined(separator: " "))\n"
+        return
+    }
+    
+    for i in 0..<input[0] {
+        if !arr.contains(inputArray[i]){
+            backTracking(i + 1, arr + [inputArray[i]])
+        }
+    }
+}
