@@ -1,7 +1,6 @@
 let input = readLine()!.split{$0 == " "}.map{Int($0)!}
 var inputArray = readLine()!.split{$0 == " "}.map{Int($0)!}.sorted(by: <)
 var anw = ""
-var visited = Array(repeating: false, count: input[0] + 1)
 
 backTracking(0, "", 0)
 
