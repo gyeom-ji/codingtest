@@ -23,7 +23,6 @@ for i in 1...N {
         dp[i] = time[i]
     }
 }
-
 bfs()
 
 for i in 1...N {
@@ -35,12 +34,20 @@ func bfs() {
         let cur = queue.removeFirst()
         
         for next in graph[cur] {
-            let maxTime = max(time[cur], dp[cur])
             inDegree[next] -= 1
+            
             if inDegree[next] == 0 {
                 queue.append(next)
             }
-            dp[next] = max(dp[next], maxTime + time[next])
+            // dp[next] 값과 dp[cur] + time[next] 값 중 더 큰 값을 dp[next]에 저장
+            dp[next] = max(dp[next], dp[cur] + time[next])
         }
     }
 }
+
+/// ex
+/// 3
+/// 5 -1
+/// 2 -1
+/// 1 1 2 -1
+/// 의 경우 5 2 6 이 정답이 되어야 함
