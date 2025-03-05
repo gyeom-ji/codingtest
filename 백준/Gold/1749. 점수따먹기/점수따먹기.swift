@@ -10,10 +10,10 @@ for i in 1...input[0] {
     }
 }
 
-for x in 1...input[0] {
-    for y in 1...input[1] {
-        for i in 1...x  {
-            for j in 1...y {
+for i in 1...input[0] {
+    for j in 1...input[1] {
+        for x in i...input[0] {
+            for y in j...input[1] {
                 result = max(result, dp[x][y] - dp[i - 1][y] - dp[x][j - 1] + dp[i - 1][j - 1])
             }
         }
