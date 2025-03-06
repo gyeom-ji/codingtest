@@ -79,5 +79,5 @@ func isWall(_ x: Int, _ y: Int, _ direction: Int) -> Bool {
 }
 
 func isValid(_ x: Int, _ y: Int) -> Bool {
-    return x + H < N && y + W < M && x >= 0 && y >= 0 && map[x][y] != 1
+    return x + H < N && y + W < M && x >= 0 && y >= 0
 }
